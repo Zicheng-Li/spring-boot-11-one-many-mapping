@@ -24,9 +24,17 @@ public class MODemoApplication {
 		return runner -> {
 
 //			createCourseAndReview(appDAO);
-			findCourseAndReview(appDAO);
+//			findCourseAndReview(appDAO);
+			deleteCourseAndReview(appDAO);
 		};
 	}
+	private void deleteCourseAndReview(AppDAO appDAO) {
+		int theId=10;
+		System.out.println("Deleting the course and review with id: " + theId);
+		appDAO.deleteCourseById(theId); // this will course and reviews
+		System.out.println("done!");
+	}
+
 
 	private void findCourseAndReview(AppDAO appDAO) {
 		int theId = 10;

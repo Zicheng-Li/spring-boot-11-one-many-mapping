@@ -23,8 +23,17 @@ public class MODemoApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
 
-			createCourseAndReview(appDAO);
+//			createCourseAndReview(appDAO);
+			findCourseAndReview(appDAO);
 		};
+	}
+
+	private void findCourseAndReview(AppDAO appDAO) {
+		int theId = 10;
+		Course course = appDAO.findCourseAndReviewById(theId);
+		System.out.println("course: " + course);
+		System.out.println("course reviews: " + course.getReviews());
+		System.out.println("done!");
 	}
 
 	private void createCourseAndReview(AppDAO appDAO) {

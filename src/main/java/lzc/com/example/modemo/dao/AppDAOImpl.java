@@ -123,6 +123,12 @@ public class AppDAOImpl implements AppDAO {
         entityManager.remove(theCourse);
     }
 
+    @Override
+    @Transactional
+    public void save(Course course) {
+        entityManager.persist(course); // it will also save the comments
+    }
+
 
 }
 

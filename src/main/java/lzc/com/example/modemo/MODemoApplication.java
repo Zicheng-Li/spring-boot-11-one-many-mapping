@@ -4,6 +4,7 @@ import lzc.com.example.modemo.dao.AppDAO;
 import lzc.com.example.modemo.entity.Course;
 import lzc.com.example.modemo.entity.Instructor;
 import lzc.com.example.modemo.entity.InstructorDetail;
+import lzc.com.example.modemo.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,22 +22,23 @@ public class MODemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-//			 createInstructor(appDAO);
-			// findInstructor(appDAO);
-			//deleteInstructor(appDAO);
-//			findInstructorDetail(appDAO);
-//			deleteInstructorDetail(appDAO);
-//			createInstructorWithCourse(appDAO);
-//			findInstructorWithCourse(appDAO);
-//			findCourseForInstructor(appDAO);
-//			findInstructorWithCourseJoinFetch(appDAO);
-//			UpdateInstructor(appDAO);
-//			UpdateCourse(appDAO);
-//			deleteInstructor(appDAO);
-			deleteCourse(appDAO);
 
-
+			createCourseAndReview(appDAO);
 		};
+	}
+
+	private void createCourseAndReview(AppDAO appDAO) {
+		// create a course
+		Course course = new Course("x++");
+		course.addReview(new Review("love this one"));
+		course.addReview(new Review("love this x++"));
+		course.addReview(new Review("love this java"));
+		course.addReview(new Review("love this c"));
+		appDAO.save(course);
+		System.out.println("saving the course");
+		System.out.println(course);
+		System.out.println("course reviews: " + course.getReviews());
+		System.out.println("done!");
 	}
 
 	private void deleteCourse(AppDAO appDAO) {
